@@ -22,6 +22,12 @@ const injectContext = PassedComponent => {
 		}
 
 		componentDidMount() {
+			fetch("https://swapi.co/api/films/")
+				.then(resp => resp.json())
+				.then(data => {
+					let store = this.state.store;
+					this.setState({ store: { ...store, films: data.results } });
+				});
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
